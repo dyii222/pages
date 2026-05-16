@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Andrej Karpathy — Blog Reading List (2020+)</title>
+<title>Andrej Karpathy — Curated Reading List</title>
 <style>
   :root {
     --bg: #faf8f5;
@@ -24,7 +24,7 @@
     padding: 48px 24px;
     line-height: 1.5;
   }
-  header { margin-bottom: 32px; }
+  header { margin-bottom: 28px; }
   h1 { font-size: 26px; font-weight: 600; margin: 0 0 6px; letter-spacing: -0.01em; }
   .sub { color: var(--muted); font-size: 14px; }
   .progress { color: var(--muted); font-size: 13px; margin-top: 12px; }
@@ -32,30 +32,13 @@
   .nav { margin-top: 12px; font-size: 13px; }
   .nav a { color: var(--accent); text-decoration: none; margin-right: 16px; }
   .nav a:hover { text-decoration: underline; }
-  .section-header {
-    margin-top: 32px;
-    margin-bottom: 12px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid var(--line);
-  }
-  .section-header h2 {
-    font-size: 15px;
-    font-weight: 600;
-    margin: 0;
-    color: var(--ink);
-  }
-  .section-header .desc {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
   ul { list-style: none; padding: 0; margin: 0; }
   li {
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: 8px;
-    margin-bottom: 8px;
-    padding: 12px 14px;
+    margin-bottom: 10px;
+    padding: 14px 16px;
     transition: opacity 0.2s, background 0.2s;
   }
   li.done { opacity: 0.55; background: #f5f2ed; }
@@ -75,10 +58,11 @@
     flex-shrink: 0;
   }
   .content { flex: 1; min-width: 0; }
-  .title { font-weight: 500; font-size: 14px; margin-bottom: 2px; }
-  .meta { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
-  .desc-text { font-size: 12px; color: var(--muted); margin-bottom: 6px; line-height: 1.4; }
-  .links { font-size: 12px; }
+  .title { font-weight: 500; font-size: 15px; margin-bottom: 4px; }
+  .meta { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .desc-text { font-size: 13px; color: var(--muted); margin-bottom: 8px; line-height: 1.45; }
+  .why { font-size: 12px; color: var(--accent); margin-bottom: 6px; font-style: italic; }
+  .links { font-size: 13px; }
   .links a { color: var(--accent); text-decoration: none; }
   .links a:hover { text-decoration: underline; }
   footer { margin-top: 32px; font-size: 12px; color: var(--muted); text-align: center; }
@@ -96,8 +80,8 @@
 </head>
 <body>
 <header>
-  <h1>Andrej Karpathy — Blog Reading List</h1>
-  <div class="sub">2020 onwards across all his blogs. Oldest → newest.</div>
+  <h1>Andrej Karpathy — Curated Reading List</h1>
+  <div class="sub">Trimmed to posts directly useful for a PM learning to build with agents.</div>
   <div class="progress" id="progress">0 of 0 read</div>
   <div class="nav">
     <a href="trq212-articles.html">← Thariq</a>
@@ -105,129 +89,60 @@
   </div>
 </header>
 
-<div class="section-header">
-  <h2>GitHub blog — karpathy.github.io</h2>
-  <div class="desc">Older blog he still occasionally returns to.</div>
-</div>
 <ul id="list">
-  <li data-id="g1"><label><input type="checkbox"><div class="content">
-    <div class="title">Biohacking Lite</div>
-    <div class="meta">11 Jun 2020</div>
-    <div class="desc-text">Dipping into biochem and energy metabolism. Same vibe as the Bear blog hygiene posts.</div>
-    <div class="links"><a href="https://karpathy.github.io/2020/06/11/biohacking-lite/" target="_blank">Read →</a></div>
-  </div></label></li>
-
-  <li data-id="g2"><label><input type="checkbox"><div class="content">
-    <div class="title">Short Story on AI: Forward Pass</div>
-    <div class="meta">27 Mar 2021</div>
-    <div class="desc-text">A short fiction piece — existential crisis inside a forward pass.</div>
-    <div class="links"><a href="https://karpathy.github.io/2021/03/27/forward-pass/" target="_blank">Read →</a></div>
-  </div></label></li>
-
-  <li data-id="g3"><label><input type="checkbox"><div class="content">
-    <div class="title">A from-scratch tour of Bitcoin in Python</div>
-    <div class="meta">21 Jun 2021</div>
-    <div class="desc-text">Sign and broadcast a real Bitcoin transaction in pure Python, zero deps.</div>
-    <div class="links"><a href="https://karpathy.github.io/2021/06/21/blockchain/" target="_blank">Read →</a></div>
-  </div></label></li>
-
-  <li data-id="g4"><label><input type="checkbox"><div class="content">
-    <div class="title">Deep Neural Nets: 33 years ago and 33 years from now</div>
-    <div class="meta">14 Mar 2022</div>
-    <div class="desc-text">Reproducing LeCun 1989 with 2022 tools. What does today's DL look like to someone in 2055?</div>
-    <div class="links"><a href="https://karpathy.github.io/2022/03/14/lecun1989/" target="_blank">Read →</a></div>
-  </div></label></li>
-
-  <li data-id="g5"><label><input type="checkbox"><div class="content">
-    <div class="title">microgpt</div>
-    <div class="meta">12 Feb 2026</div>
-    <div class="desc-text">200 lines of pure dependency-free Python to train and inference a GPT. "The culmination of a decade-long obsession to simplify LLMs to their bare essentials."</div>
-    <div class="links"><a href="https://karpathy.github.io/2026/02/12/microgpt/" target="_blank">Read →</a></div>
-  </div></label></li>
-
-  <li class="section-divider" style="border:none;background:none;padding:0;margin:24px 0 12px;"><div class="section-header" style="margin:0;"><h2>Bear blog — karpathy.bearblog.dev</h2><div class="desc">Current blog, started March 2025. Most recent thinking on LLMs, plus life/health stuff.</div></div></li>
-
   <li data-id="b1"><label><input type="checkbox"><div class="content">
     <div class="title">The append-and-review note</div>
     <div class="meta">Mar 2025</div>
-    <div class="desc-text">One single Apple note for everything. Append on top, review periodically. Dead simple, very on-brand.</div>
+    <div class="desc-text">One single Apple note for everything. Append on top, review periodically.</div>
+    <div class="why">→ Mirrors what you're doing with your Notion query library + Karpathy-wiki TODO. Useful prior art for your own knowledge system.</div>
     <div class="links"><a href="https://karpathy.bearblog.dev/the-append-and-review-note/" target="_blank">Read →</a></div>
   </div></label></li>
 
   <li data-id="b2"><label><input type="checkbox"><div class="content">
     <div class="title">Power to the people: How LLMs flip the script on technology diffusion</div>
     <div class="meta">7 Apr 2025</div>
-    <div class="desc-text">Unusually, this technology benefits regular people more than corporations and governments.</div>
+    <div class="desc-text">Unlike every prior tech wave, this one benefits regular people more than corporations and governments.</div>
+    <div class="why">→ The motivating frame for why a non-coding PM can suddenly build real things. Sets the right expectations.</div>
     <div class="links"><a href="https://karpathy.bearblog.dev/power-to-the-people/" target="_blank">Read →</a></div>
   </div></label></li>
 
   <li data-id="b3"><label><input type="checkbox"><div class="content">
     <div class="title">Vibe coding MenuGen</div>
     <div class="meta">27 Apr 2025</div>
-    <div class="desc-text">Building and deploying a real app via vibe coding — the joys and the IKEA-furniture-assembly pain. Constant reference point in his later writing.</div>
+    <div class="desc-text">Building and deploying a real app via vibe coding. The joys and the IKEA-furniture-assembly pain of deployment, auth, payments, DNS.</div>
+    <div class="why">→ The single most useful post for your situation. Read this before you start your first real side project — it's the playbook and the warning, in one.</div>
     <div class="links"><a href="https://karpathy.bearblog.dev/vibe-coding-menugen/" target="_blank">Read →</a></div>
   </div></label></li>
 
   <li data-id="b4"><label><input type="checkbox"><div class="content">
-    <div class="title">Digital hygiene</div>
-    <div class="meta">2025</div>
-    <div class="desc-text">YubiKeys, password hygiene, threat-model thinking. Practical security for normal humans.</div>
-    <div class="links"><a href="https://karpathy.bearblog.dev/digital-hygiene/" target="_blank">Read →</a></div>
-  </div></label></li>
-
-  <li data-id="b5"><label><input type="checkbox"><div class="content">
-    <div class="title">Finding the Best Sleep Tracker</div>
-    <div class="meta">2025</div>
-    <div class="desc-text">Oura vs Whoop vs AutoSleep, with actual data analysis. The kind of side project only Karpathy would do properly.</div>
-    <div class="links"><a href="https://karpathy.bearblog.dev/finding-the-best-sleep-tracker/" target="_blank">Read →</a></div>
-  </div></label></li>
-
-  <li data-id="b6"><label><input type="checkbox"><div class="content">
     <div class="title">Animals vs Ghosts</div>
     <div class="meta">1 Oct 2025</div>
-    <div class="desc-text">LLMs aren't animals — they're "ghosts summoned from human text." A response to Sutton's Dwarkesh interview. Genuinely useful framing.</div>
+    <div class="desc-text">LLMs aren't animals — they're "ghosts summoned from human text." Different optimization pressures, different minds.</div>
+    <div class="why">→ Mental model for what LLMs actually are. Helps you stop being surprised when they're brilliant one moment and confidently wrong the next.</div>
     <div class="links"><a href="https://karpathy.bearblog.dev/animals-vs-ghosts/" target="_blank">Read →</a></div>
   </div></label></li>
 
-  <li data-id="b7"><label><input type="checkbox"><div class="content">
+  <li data-id="b5"><label><input type="checkbox"><div class="content">
     <div class="title">Verifiability</div>
     <div class="meta">17 Nov 2025</div>
-    <div class="desc-text">Software 1.0 automates what you can specify. Software 2.0 automates what you can verify. Explains the jagged frontier of LLM capability.</div>
+    <div class="desc-text">Software 1.0 automates what you can specify. Software 2.0 automates what you can verify.</div>
+    <div class="why">→ Practical heuristic for when to trust an agent's output. If a task is easy to verify, agents fly. If not, you stay in the loop. Use this to scope your side projects.</div>
     <div class="links"><a href="https://karpathy.bearblog.dev/verifiability/" target="_blank">Read →</a></div>
   </div></label></li>
 
-  <li data-id="b8"><label><input type="checkbox"><div class="content">
-    <div class="title">The space of minds</div>
-    <div class="meta">29 Nov 2025</div>
-    <div class="desc-text">The shape of LLM intelligence vs animal intelligence — different optimization pressures, different minds.</div>
-    <div class="links"><a href="https://karpathy.bearblog.dev/the-space-of-minds/" target="_blank">Read →</a></div>
-  </div></label></li>
-
-  <li data-id="b9"><label><input type="checkbox"><div class="content">
-    <div class="title">Auto-grading decade-old Hacker News discussions with hindsight</div>
-    <div class="meta">10 Dec 2025</div>
-    <div class="desc-text">Vibe-coded LLM tool that grades 2015 HN comments on prescience. "Future LLMs are watching."</div>
-    <div class="links"><a href="https://karpathy.bearblog.dev/auto-grade-hn/" target="_blank">Read →</a></div>
-  </div></label></li>
-
-  <li data-id="b10"><label><input type="checkbox"><div class="content">
-    <div class="title">Chemical hygiene</div>
-    <div class="meta">18 Dec 2025</div>
-    <div class="desc-text">Water, air, food, fabrics, plastics. His opinionated everyday-toxicity playbook.</div>
-    <div class="links"><a href="https://karpathy.bearblog.dev/chemical-hygiene/" target="_blank">Read →</a></div>
-  </div></label></li>
-
-  <li data-id="b11"><label><input type="checkbox"><div class="content">
+  <li data-id="b6"><label><input type="checkbox"><div class="content">
     <div class="title">2025 LLM Year in Review</div>
     <div class="meta">19 Dec 2025</div>
-    <div class="desc-text">RLVR, jagged intelligence, Cursor as a layer, Claude Code as agent paradigm, vibe coding, nano banana. The state-of-the-field summary.</div>
+    <div class="desc-text">RLVR, jagged intelligence, Cursor as a layer, Claude Code as agent paradigm, vibe coding, nano banana.</div>
+    <div class="why">→ Single-post catch-up on the whole field. Read this and you understand 80% of what people are talking about in 2026 AI discourse.</div>
     <div class="links"><a href="https://karpathy.bearblog.dev/year-in-review-2025/" target="_blank">Read →</a></div>
   </div></label></li>
 
-  <li data-id="b12"><label><input type="checkbox"><div class="content">
+  <li data-id="b7"><label><input type="checkbox"><div class="content">
     <div class="title">Sequoia Ascent 2026 summary</div>
     <div class="meta">30 Apr 2026</div>
-    <div class="desc-text">Software 3.0, agentic engineering vs vibe coding, jagged intelligence, the LLM Wiki pattern (relevant to your Monday TODO). Also includes the full edited transcript.</div>
+    <div class="desc-text">Software 3.0, agentic engineering vs vibe coding, jagged intelligence, the LLM Wiki pattern. Also includes the full edited transcript.</div>
+    <div class="why">→ The most directly relevant post. Vibe coding (raises floor) vs agentic engineering (raises ceiling) is exactly the path you're starting on. The LLM Wiki pattern is your Monday TODO. Save this for last; it'll land harder once the others are in.</div>
     <div class="links"><a href="https://karpathy.bearblog.dev/sequoia-ascent-2026/" target="_blank">Read →</a></div>
   </div></label></li>
 </ul>
@@ -237,7 +152,7 @@
 </footer>
 
 <script>
-  const KEY = 'karpathy-blog-v2';
+  const KEY = 'karpathy-blog-v3';
   const list = document.getElementById('list');
   const progress = document.getElementById('progress');
 
