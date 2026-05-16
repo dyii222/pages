@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thariq (@trq212) — X Articles Reading List</title>
+<style>
+  :root {
+    --bg: #faf8f5;
+    --card: #ffffff;
+    --ink: #2a2a28;
+    --muted: #6b6b65;
+    --line: #e8e4dd;
+    --accent: #8a5a3a;
+    --done: #b8b3a8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px;
+    line-height: 1.5;
+  }
+  header { margin-bottom: 32px; }
+  h1 { font-size: 26px; font-weight: 600; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); font-size: 14px; }
+  .progress { color: var(--muted); font-size: 13px; margin-top: 12px; }
+  .progress strong { color: var(--accent); }
+  ul { list-style: none; padding: 0; margin: 0; }
+  li {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 14px 16px;
+    transition: opacity 0.2s, background 0.2s;
+  }
+  li.done { opacity: 0.55; background: #f5f2ed; }
+  li.done .title { text-decoration: line-through; color: var(--done); }
+  label {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    cursor: pointer;
+  }
+  input[type="checkbox"] {
+    margin-top: 4px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .content { flex: 1; min-width: 0; }
+  .title { font-weight: 500; font-size: 15px; margin-bottom: 4px; }
+  .meta { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .links { font-size: 13px; }
+  .links a { color: var(--accent); text-decoration: none; margin-right: 14px; }
+  .links a:hover { text-decoration: underline; }
+  footer { margin-top: 32px; font-size: 12px; color: var(--muted); text-align: center; }
+  footer button {
+    background: none;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  footer button:hover { border-color: var(--accent); color: var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Thariq (@trq212) — X Articles</h1>
+  <div class="sub">Long-form articles, ordered oldest → newest. Tick off as you read.</div>
+  <div class="progress" id="progress">0 of 7 read</div>
+</header>
+
+<ul id="list">
+  <li data-id="a1">
+    <label>
+      <input type="checkbox">
+      <div class="content">
+        <div class="title">Merging Slash Commands into Skills in Claude Code</div>
+        <div class="meta">23 Jan 2026</div>
+        <div class="links">
+          <a href="https://x.com/trq212/status/2014836841846132761" target="_blank">Open on X →</a>
+        </div>
+      </div>
+    </label>
+  </li>
+  <li data-id="a2">
+    <label>
+      <input type="checkbox">
+      <div class="content">
+        <div class="title">Claude Code Playgrounds: Interactive Pages to Help Your Plans</div>
+        <div class="meta">29 Jan 2026</div>
+        <div class="links">
+          <a href="https://x.com/i/article/2016768930174685187" target="_blank">Article →</a>
+          <a href="https://x.com/trq212/status/2017024445244924382" target="_blank">Post →</a>
+        </div>
+      </div>
+    </label>
+  </li>
+  <li data-id="a3">
+    <label>
+      <input type="checkbox">
+      <div class="content">
+        <div class="title">Lessons from Building Claude Code: Prompt Caching Is Everything</div>
+        <div class="meta">19 Feb 2026</div>
+        <div class="links">
+          <a href="https://x.com/i/article/2024543492064882688" target="_blank">Article →</a>
+          <a href="https://x.com/trq212/status/2024574133011673516" target="_blank">Post →</a>
+        </div>
+      </div>
+    </label>
+  </li>
+  <li data-id="a4">
+    <label>
+      <input type="checkbox">
+      <div class="content">
+        <div class="title">Lessons from Building Claude Code: Seeing like an Agent</div>
+        <div class="meta">27 Feb 2026</div>
+        <div class="links">
+          <a href="https://x.com/i/article/2027446899310313472" target="_blank">Article →</a>
+          <a href="https://x.com/trq212/status/2027463795355095314" target="_blank">Post →</a>
+        </div>
+      </div>
+    </label>
+  </li>
+  <li data-id="a5">
+    <label>
+      <input type="checkbox">
+      <div class="content">
+        <div class="title">Lessons from Building Claude Code: How We Use Skills</div>
+        <div class="meta">17 Mar 2026</div>
+        <div class="links">
+          <a href="https://x.com/i/article/2033772621536591872" target="_blank">Article →</a>
+          <a href="https://x.com/trq212/status/2033949937936085378" target="_blank">Post →</a>
+        </div>
+      </div>
+    </label>
+  </li>
+  <li data-id="a6">
+    <label>
+      <input type="checkbox">
+      <div class="content">
+        <div class="title">Using Claude Code: Session Management &amp; 1M Context</div>
+        <div class="meta">15 Apr 2026</div>
+        <div class="links">
+          <a href="https://x.com/i/article/2044537014620721153" target="_blank">Article →</a>
+          <a href="https://x.com/trq212/status/2044548257058328723" target="_blank">Post →</a>
+        </div>
+      </div>
+    </label>
+  </li>
+  <li data-id="a7">
+    <label>
+      <input type="checkbox">
+      <div class="content">
+        <div class="title">HTML is the New Markdown</div>
+        <div class="meta">8 May 2026</div>
+        <div class="links">
+          <a href="https://x.com/i/article/2052796100608974848" target="_blank">Article →</a>
+          <a href="https://x.com/trq212/status/2052811606032269638" target="_blank">Post →</a>
+        </div>
+      </div>
+    </label>
+  </li>
+</ul>
+
+<footer>
+  <button onclick="resetAll()">Reset progress</button>
+</footer>
+
+<script>
+  const KEY = 'trq212-articles-v1';
+  const list = document.getElementById('list');
+  const progress = document.getElementById('progress');
+
+  function save() {
+    const state = {};
+    list.querySelectorAll('li').forEach(li => {
+      state[li.dataset.id] = li.querySelector('input').checked;
+    });
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  function load() {
+    let state = {};
+    try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) {}
+    list.querySelectorAll('li').forEach(li => {
+      const cb = li.querySelector('input');
+      cb.checked = !!state[li.dataset.id];
+      li.classList.toggle('done', cb.checked);
+    });
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const items = list.querySelectorAll('li');
+    const done = list.querySelectorAll('input:checked').length;
+    progress.innerHTML = `<strong>${done}</strong> of ${items.length} read`;
+  }
+
+  function resetAll() {
+    list.querySelectorAll('input').forEach(cb => {
+      cb.checked = false;
+      cb.closest('li').classList.remove('done');
+    });
+    save();
+    updateProgress();
+  }
+
+  list.addEventListener('change', e => {
+    if (e.target.matches('input[type="checkbox"]')) {
+      e.target.closest('li').classList.toggle('done', e.target.checked);
+      save();
+      updateProgress();
+    }
+  });
+
+  load();
+</script>
+</body>
+</html>
