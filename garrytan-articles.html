@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garry Tan (@garrytan) — X Articles Reading List</title>
+<style>
+  :root {
+    --bg: #faf8f5;
+    --card: #ffffff;
+    --ink: #2a2a28;
+    --muted: #6b6b65;
+    --line: #e8e4dd;
+    --accent: #8a5a3a;
+    --done: #b8b3a8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px;
+    line-height: 1.5;
+  }
+  header { margin-bottom: 32px; }
+  h1 { font-size: 26px; font-weight: 600; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); font-size: 14px; }
+  .progress { color: var(--muted); font-size: 13px; margin-top: 12px; }
+  .progress strong { color: var(--accent); }
+  .nav { margin-top: 12px; font-size: 13px; }
+  .nav a { color: var(--accent); text-decoration: none; }
+  .nav a:hover { text-decoration: underline; }
+  ul { list-style: none; padding: 0; margin: 0; }
+  li {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 14px 16px;
+    transition: opacity 0.2s, background 0.2s;
+  }
+  li.done { opacity: 0.55; background: #f5f2ed; }
+  li.done .title { text-decoration: line-through; color: var(--done); }
+  label {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    cursor: pointer;
+  }
+  input[type="checkbox"] {
+    margin-top: 4px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .content { flex: 1; min-width: 0; }
+  .title { font-weight: 500; font-size: 15px; margin-bottom: 4px; }
+  .meta { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .links { font-size: 13px; }
+  .links a { color: var(--accent); text-decoration: none; margin-right: 14px; }
+  .links a:hover { text-decoration: underline; }
+  footer { margin-top: 32px; font-size: 12px; color: var(--muted); text-align: center; }
+  footer button {
+    background: none;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  footer button:hover { border-color: var(--accent); color: var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Garry Tan (@garrytan) — X Articles</h1>
+  <div class="sub">Long-form articles, ordered oldest → newest. Tick off as you read.</div>
+  <div class="progress" id="progress">0 of 5 read</div>
+  <div class="nav"><a href="trq212-articles.html">← Thariq (@trq212)</a></div>
+</header>
+
+<ul id="list">
+  <li data-id="g1">
+    <label>
+      <input type="checkbox">
+      <div class="content">
+        <div class="title">GStack / Skills Design Philosophy</div>
+        <div class="meta">29 Jan 2026</div>
+        <div class="links">
+          <a href="https://x.com/i/article/2017109679416233987" target="_blank">Article →</a>
+          <a href="https://x.com/garrytan/status/2044479509874020852" target="_blank">Post →</a>
+        </div>
+      </div>
+    </label>
+  </li>
+  <li data-id="g2">
+    <label>
+      <input type="checkbox">
+      <div class="content">
+        <div class="title">Fat Skills, Fat Code, Thin Harness</div>
+        <div class="meta">11 Apr 2026</div>
+        <div class="links">
+          <a href="https://x.com/i/article/2042922188924424198" target="_blank">Article →</a>
+          <a href="https://x.com/garrytan/status/2042925773300908103" target="_blank">Post →</a>
+        </div>
+      </div>
+    </label>
+  </li>
+  <li data-id="g3">
+    <label>
+      <input type="checkbox">
+      <div class="content">
+        <div class="title">On the LOC Controversy</div>
+        <div class="meta">18 Apr 2026</div>
+        <div class="links">
+          <a href="https://x.com/i/article/2045399081150025728" target="_blank">Article →</a>
+          <a href="https://x.com/garrytan/status/2045404377226285538" target="_blank">Post →</a>
+        </div>
+      </div>
+    </label>
+  </li>
+  <li data-id="g4">
+    <label>
+      <input type="checkbox">
+      <div class="content">
+        <div class="title">Skillify — Auto-Creating Skills from Workflow</div>
+        <div class="meta">22 Apr 2026</div>
+        <div class="links">
+          <a href="https://x.com/i/article/2046866228703363072" target="_blank">Article →</a>
+          <a href="https://x.com/garrytan/status/2046876981711769720" target="_blank">Post →</a>
+        </div>
+      </div>
+    </label>
+  </li>
+  <li data-id="g5">
+    <label>
+      <input type="checkbox">
+      <div class="content">
+        <div class="title">Compounding AI Systems — The GBrain Thesis</div>
+        <div class="meta">9 May 2026</div>
+        <div class="links">
+          <a href="https://x.com/i/article/2052898104039657472" target="_blank">Article →</a>
+          <a href="https://x.com/garrytan/status/2053127519872614419" target="_blank">Post →</a>
+        </div>
+      </div>
+    </label>
+  </li>
+</ul>
+
+<footer>
+  <button onclick="resetAll()">Reset progress</button>
+</footer>
+
+<script>
+  const KEY = 'garrytan-articles-v1';
+  const list = document.getElementById('list');
+  const progress = document.getElementById('progress');
+
+  function save() {
+    const state = {};
+    list.querySelectorAll('li').forEach(li => {
+      state[li.dataset.id] = li.querySelector('input').checked;
+    });
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  function load() {
+    let state = {};
+    try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) {}
+    list.querySelectorAll('li').forEach(li => {
+      const cb = li.querySelector('input');
+      cb.checked = !!state[li.dataset.id];
+      li.classList.toggle('done', cb.checked);
+    });
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const items = list.querySelectorAll('li');
+    const done = list.querySelectorAll('input:checked').length;
+    progress.innerHTML = `<strong>${done}</strong> of ${items.length} read`;
+  }
+
+  function resetAll() {
+    list.querySelectorAll('input').forEach(cb => {
+      cb.checked = false;
+      cb.closest('li').classList.remove('done');
+    });
+    save();
+    updateProgress();
+  }
+
+  list.addEventListener('change', e => {
+    if (e.target.matches('input[type="checkbox"]')) {
+      e.target.closest('li').classList.toggle('done', e.target.checked);
+      save();
+      updateProgress();
+    }
+  });
+
+  load();
+</script>
+</body>
+</html>
