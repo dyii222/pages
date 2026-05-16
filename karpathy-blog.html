@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrej Karpathy — Blog Reading List (2020+)</title>
+<style>
+  :root {
+    --bg: #faf8f5;
+    --card: #ffffff;
+    --ink: #2a2a28;
+    --muted: #6b6b65;
+    --line: #e8e4dd;
+    --accent: #8a5a3a;
+    --done: #b8b3a8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 24px;
+    line-height: 1.5;
+  }
+  header { margin-bottom: 32px; }
+  h1 { font-size: 26px; font-weight: 600; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); font-size: 14px; }
+  .progress { color: var(--muted); font-size: 13px; margin-top: 12px; }
+  .progress strong { color: var(--accent); }
+  .nav { margin-top: 12px; font-size: 13px; }
+  .nav a { color: var(--accent); text-decoration: none; margin-right: 16px; }
+  .nav a:hover { text-decoration: underline; }
+  .section-header {
+    margin-top: 32px;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-header h2 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--ink);
+  }
+  .section-header .desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  ul { list-style: none; padding: 0; margin: 0; }
+  li {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    padding: 12px 14px;
+    transition: opacity 0.2s, background 0.2s;
+  }
+  li.done { opacity: 0.55; background: #f5f2ed; }
+  li.done .title { text-decoration: line-through; color: var(--done); }
+  label {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    cursor: pointer;
+  }
+  input[type="checkbox"] {
+    margin-top: 4px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .content { flex: 1; min-width: 0; }
+  .title { font-weight: 500; font-size: 14px; margin-bottom: 2px; }
+  .meta { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+  .desc-text { font-size: 12px; color: var(--muted); margin-bottom: 6px; line-height: 1.4; }
+  .links { font-size: 12px; }
+  .links a { color: var(--accent); text-decoration: none; }
+  .links a:hover { text-decoration: underline; }
+  footer { margin-top: 32px; font-size: 12px; color: var(--muted); text-align: center; }
+  footer button {
+    background: none;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  footer button:hover { border-color: var(--accent); color: var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Andrej Karpathy — Blog Reading List</h1>
+  <div class="sub">2020 onwards across all his blogs. Oldest → newest.</div>
+  <div class="progress" id="progress">0 of 0 read</div>
+  <div class="nav">
+    <a href="trq212-articles.html">← Thariq</a>
+    <a href="garrytan-articles.html">← Garry Tan</a>
+  </div>
+</header>
+
+<div class="section-header">
+  <h2>GitHub blog — karpathy.github.io</h2>
+  <div class="desc">Older blog he still occasionally returns to.</div>
+</div>
+<ul id="list">
+  <li data-id="g1"><label><input type="checkbox"><div class="content">
+    <div class="title">Biohacking Lite</div>
+    <div class="meta">11 Jun 2020</div>
+    <div class="desc-text">Dipping into biochem and energy metabolism. Same vibe as the Bear blog hygiene posts.</div>
+    <div class="links"><a href="https://karpathy.github.io/2020/06/11/biohacking-lite/" target="_blank">Read →</a></div>
+  </div></label></li>
+
+  <li data-id="g2"><label><input type="checkbox"><div class="content">
+    <div class="title">Short Story on AI: Forward Pass</div>
+    <div class="meta">27 Mar 2021</div>
+    <div class="desc-text">A short fiction piece — existential crisis inside a forward pass.</div>
+    <div class="links"><a href="https://karpathy.github.io/2021/03/27/forward-pass/" target="_blank">Read →</a></div>
+  </div></label></li>
+
+  <li data-id="g3"><label><input type="checkbox"><div class="content">
+    <div class="title">A from-scratch tour of Bitcoin in Python</div>
+    <div class="meta">21 Jun 2021</div>
+    <div class="desc-text">Sign and broadcast a real Bitcoin transaction in pure Python, zero deps.</div>
+    <div class="links"><a href="https://karpathy.github.io/2021/06/21/blockchain/" target="_blank">Read →</a></div>
+  </div></label></li>
+
+  <li data-id="g4"><label><input type="checkbox"><div class="content">
+    <div class="title">Deep Neural Nets: 33 years ago and 33 years from now</div>
+    <div class="meta">14 Mar 2022</div>
+    <div class="desc-text">Reproducing LeCun 1989 with 2022 tools. What does today's DL look like to someone in 2055?</div>
+    <div class="links"><a href="https://karpathy.github.io/2022/03/14/lecun1989/" target="_blank">Read →</a></div>
+  </div></label></li>
+
+  <li data-id="g5"><label><input type="checkbox"><div class="content">
+    <div class="title">microgpt</div>
+    <div class="meta">12 Feb 2026</div>
+    <div class="desc-text">200 lines of pure dependency-free Python to train and inference a GPT. "The culmination of a decade-long obsession to simplify LLMs to their bare essentials."</div>
+    <div class="links"><a href="https://karpathy.github.io/2026/02/12/microgpt/" target="_blank">Read →</a></div>
+  </div></label></li>
+
+  <li class="section-divider" style="border:none;background:none;padding:0;margin:24px 0 12px;"><div class="section-header" style="margin:0;"><h2>Bear blog — karpathy.bearblog.dev</h2><div class="desc">Current blog, started March 2025. Most recent thinking on LLMs, plus life/health stuff.</div></div></li>
+
+  <li data-id="b1"><label><input type="checkbox"><div class="content">
+    <div class="title">The append-and-review note</div>
+    <div class="meta">Mar 2025</div>
+    <div class="desc-text">One single Apple note for everything. Append on top, review periodically. Dead simple, very on-brand.</div>
+    <div class="links"><a href="https://karpathy.bearblog.dev/the-append-and-review-note/" target="_blank">Read →</a></div>
+  </div></label></li>
+
+  <li data-id="b2"><label><input type="checkbox"><div class="content">
+    <div class="title">Power to the people: How LLMs flip the script on technology diffusion</div>
+    <div class="meta">7 Apr 2025</div>
+    <div class="desc-text">Unusually, this technology benefits regular people more than corporations and governments.</div>
+    <div class="links"><a href="https://karpathy.bearblog.dev/power-to-the-people/" target="_blank">Read →</a></div>
+  </div></label></li>
+
+  <li data-id="b3"><label><input type="checkbox"><div class="content">
+    <div class="title">Vibe coding MenuGen</div>
+    <div class="meta">27 Apr 2025</div>
+    <div class="desc-text">Building and deploying a real app via vibe coding — the joys and the IKEA-furniture-assembly pain. Constant reference point in his later writing.</div>
+    <div class="links"><a href="https://karpathy.bearblog.dev/vibe-coding-menugen/" target="_blank">Read →</a></div>
+  </div></label></li>
+
+  <li data-id="b4"><label><input type="checkbox"><div class="content">
+    <div class="title">Digital hygiene</div>
+    <div class="meta">2025</div>
+    <div class="desc-text">YubiKeys, password hygiene, threat-model thinking. Practical security for normal humans.</div>
+    <div class="links"><a href="https://karpathy.bearblog.dev/digital-hygiene/" target="_blank">Read →</a></div>
+  </div></label></li>
+
+  <li data-id="b5"><label><input type="checkbox"><div class="content">
+    <div class="title">Finding the Best Sleep Tracker</div>
+    <div class="meta">2025</div>
+    <div class="desc-text">Oura vs Whoop vs AutoSleep, with actual data analysis. The kind of side project only Karpathy would do properly.</div>
+    <div class="links"><a href="https://karpathy.bearblog.dev/finding-the-best-sleep-tracker/" target="_blank">Read →</a></div>
+  </div></label></li>
+
+  <li data-id="b6"><label><input type="checkbox"><div class="content">
+    <div class="title">Animals vs Ghosts</div>
+    <div class="meta">1 Oct 2025</div>
+    <div class="desc-text">LLMs aren't animals — they're "ghosts summoned from human text." A response to Sutton's Dwarkesh interview. Genuinely useful framing.</div>
+    <div class="links"><a href="https://karpathy.bearblog.dev/animals-vs-ghosts/" target="_blank">Read →</a></div>
+  </div></label></li>
+
+  <li data-id="b7"><label><input type="checkbox"><div class="content">
+    <div class="title">Verifiability</div>
+    <div class="meta">17 Nov 2025</div>
+    <div class="desc-text">Software 1.0 automates what you can specify. Software 2.0 automates what you can verify. Explains the jagged frontier of LLM capability.</div>
+    <div class="links"><a href="https://karpathy.bearblog.dev/verifiability/" target="_blank">Read →</a></div>
+  </div></label></li>
+
+  <li data-id="b8"><label><input type="checkbox"><div class="content">
+    <div class="title">The space of minds</div>
+    <div class="meta">29 Nov 2025</div>
+    <div class="desc-text">The shape of LLM intelligence vs animal intelligence — different optimization pressures, different minds.</div>
+    <div class="links"><a href="https://karpathy.bearblog.dev/the-space-of-minds/" target="_blank">Read →</a></div>
+  </div></label></li>
+
+  <li data-id="b9"><label><input type="checkbox"><div class="content">
+    <div class="title">Auto-grading decade-old Hacker News discussions with hindsight</div>
+    <div class="meta">10 Dec 2025</div>
+    <div class="desc-text">Vibe-coded LLM tool that grades 2015 HN comments on prescience. "Future LLMs are watching."</div>
+    <div class="links"><a href="https://karpathy.bearblog.dev/auto-grade-hn/" target="_blank">Read →</a></div>
+  </div></label></li>
+
+  <li data-id="b10"><label><input type="checkbox"><div class="content">
+    <div class="title">Chemical hygiene</div>
+    <div class="meta">18 Dec 2025</div>
+    <div class="desc-text">Water, air, food, fabrics, plastics. His opinionated everyday-toxicity playbook.</div>
+    <div class="links"><a href="https://karpathy.bearblog.dev/chemical-hygiene/" target="_blank">Read →</a></div>
+  </div></label></li>
+
+  <li data-id="b11"><label><input type="checkbox"><div class="content">
+    <div class="title">2025 LLM Year in Review</div>
+    <div class="meta">19 Dec 2025</div>
+    <div class="desc-text">RLVR, jagged intelligence, Cursor as a layer, Claude Code as agent paradigm, vibe coding, nano banana. The state-of-the-field summary.</div>
+    <div class="links"><a href="https://karpathy.bearblog.dev/year-in-review-2025/" target="_blank">Read →</a></div>
+  </div></label></li>
+
+  <li data-id="b12"><label><input type="checkbox"><div class="content">
+    <div class="title">Sequoia Ascent 2026 summary</div>
+    <div class="meta">30 Apr 2026</div>
+    <div class="desc-text">Software 3.0, agentic engineering vs vibe coding, jagged intelligence, the LLM Wiki pattern (relevant to your Monday TODO). Also includes the full edited transcript.</div>
+    <div class="links"><a href="https://karpathy.bearblog.dev/sequoia-ascent-2026/" target="_blank">Read →</a></div>
+  </div></label></li>
+</ul>
+
+<footer>
+  <button onclick="resetAll()">Reset progress</button>
+</footer>
+
+<script>
+  const KEY = 'karpathy-blog-v2';
+  const list = document.getElementById('list');
+  const progress = document.getElementById('progress');
+
+  function save() {
+    const state = {};
+    list.querySelectorAll('li[data-id]').forEach(li => {
+      state[li.dataset.id] = li.querySelector('input').checked;
+    });
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  function load() {
+    let state = {};
+    try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) {}
+    list.querySelectorAll('li[data-id]').forEach(li => {
+      const cb = li.querySelector('input');
+      cb.checked = !!state[li.dataset.id];
+      li.classList.toggle('done', cb.checked);
+    });
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const items = list.querySelectorAll('li[data-id]');
+    const done = list.querySelectorAll('li[data-id] input:checked').length;
+    progress.innerHTML = `<strong>${done}</strong> of ${items.length} read`;
+  }
+
+  function resetAll() {
+    list.querySelectorAll('li[data-id] input').forEach(cb => {
+      cb.checked = false;
+      cb.closest('li').classList.remove('done');
+    });
+    save();
+    updateProgress();
+  }
+
+  list.addEventListener('change', e => {
+    if (e.target.matches('input[type="checkbox"]')) {
+      e.target.closest('li').classList.toggle('done', e.target.checked);
+      save();
+      updateProgress();
+    }
+  });
+
+  load();
+</script>
+</body>
+</html>
