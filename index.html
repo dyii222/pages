@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dan's Reading Lists</title>
+<style>
+  :root {
+    --bg: #faf8f5;
+    --card: #ffffff;
+    --ink: #2a2a28;
+    --muted: #6b6b65;
+    --line: #e8e4dd;
+    --accent: #8a5a3a;
+    --done: #b8b3a8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px;
+    line-height: 1.5;
+  }
+  header { margin-bottom: 32px; }
+  h1 { font-size: 28px; font-weight: 600; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); font-size: 14px; }
+  ul { list-style: none; padding: 0; margin: 0; }
+  li {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    padding: 18px 20px;
+    transition: border-color 0.15s, transform 0.1s;
+  }
+  li:hover {
+    border-color: var(--accent);
+  }
+  a.card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .left { flex: 1; min-width: 0; }
+  .title {
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .handle { color: var(--accent); font-weight: 500; }
+  .desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+  .progress-pill {
+    background: #f0ece4;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .progress-pill.complete {
+    background: var(--accent);
+    color: white;
+  }
+  footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Reading Lists</h1>
+  <div class="sub">Curated checklists. Click to open, tick off as you read.</div>
+</header>
+
+<ul>
+  <li>
+    <a class="card-link" href="karpathy-blog.html">
+      <div class="row">
+        <div class="left">
+          <div class="title">Andrej Karpathy <span class="handle">— curated for building with agents</span></div>
+          <div class="desc">7 posts trimmed from his Bear blog. Software 3.0, agentic engineering, vibe coding MenuGen, the LLM Wiki pattern.</div>
+        </div>
+        <div class="progress-pill" data-key="karpathy-blog-v3" data-total="7">— / 7</div>
+      </div>
+    </a>
+  </li>
+
+  <li>
+    <a class="card-link" href="trq212-articles.html">
+      <div class="row">
+        <div class="left">
+          <div class="title">Thariq <span class="handle">@trq212</span></div>
+          <div class="desc">7 X Articles from the Claude Code team. Prompt caching, skills, session management, "HTML is the new markdown".</div>
+        </div>
+        <div class="progress-pill" data-key="trq212-articles-v1" data-total="7">— / 7</div>
+      </div>
+    </a>
+  </li>
+
+  <li>
+    <a class="card-link" href="garrytan-articles.html">
+      <div class="row">
+        <div class="left">
+          <div class="title">Garry Tan <span class="handle">@garrytan</span></div>
+          <div class="desc">5 X Articles. GStack, Fat Skills, the LOC controversy, Skillify, the GBrain thesis.</div>
+        </div>
+        <div class="progress-pill" data-key="garrytan-articles-v1" data-total="5">— / 5</div>
+      </div>
+    </a>
+  </li>
+</ul>
+
+<footer>
+  Built and pushed from Claude. Hosted on GitHub Pages.
+</footer>
+
+<script>
+  // Read progress from each list's localStorage
+  document.querySelectorAll('.progress-pill').forEach(pill => {
+    const key = pill.dataset.key;
+    const total = parseInt(pill.dataset.total, 10);
+    let done = 0;
+    try {
+      const state = JSON.parse(localStorage.getItem(key) || '{}');
+      done = Object.values(state).filter(v => v === true).length;
+    } catch(e) {}
+    pill.textContent = `${done} / ${total}`;
+    if (done === total && total > 0) {
+      pill.classList.add('complete');
+    }
+  });
+</script>
+</body>
+</html>
