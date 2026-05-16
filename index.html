@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dan's Reading Lists</title>
+<title>Dan's Reading List</title>
 <style>
   :root {
     --bg: #faf8f5;
@@ -13,70 +13,127 @@
     --line: #e8e4dd;
     --accent: #8a5a3a;
     --done: #b8b3a8;
+    --tier1: #8a5a3a;
+    --tier2: #5a7a6a;
+    --tier3: #8a8a85;
   }
   * { box-sizing: border-box; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
     background: var(--bg);
     color: var(--ink);
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
     padding: 48px 24px;
-    line-height: 1.5;
+    line-height: 1.55;
   }
   header { margin-bottom: 32px; }
   h1 { font-size: 28px; font-weight: 600; margin: 0 0 8px; letter-spacing: -0.01em; }
-  .sub { color: var(--muted); font-size: 14px; }
+  .sub { color: var(--muted); font-size: 14px; max-width: 600px; }
+  .progress { color: var(--muted); font-size: 13px; margin-top: 14px; }
+  .progress strong { color: var(--accent); }
+  .tier-header {
+    margin-top: 40px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--line);
+  }
+  .tier-header:first-of-type { margin-top: 20px; }
+  .tier-header h2 {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    color: var(--ink);
+  }
+  .tier-header .tier-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .tier-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 8px;
+    vertical-align: middle;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .tier-1 .tier-badge { background: var(--tier1); color: white; }
+  .tier-2 .tier-badge { background: var(--tier2); color: white; }
+  .tier-3 .tier-badge { background: var(--tier3); color: white; }
   ul { list-style: none; padding: 0; margin: 0; }
-  li {
+  li.article {
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: 8px;
     margin-bottom: 12px;
-    padding: 18px 20px;
-    transition: border-color 0.15s, transform 0.1s;
+    padding: 16px 18px;
+    transition: opacity 0.2s, background 0.2s;
   }
-  li:hover {
-    border-color: var(--accent);
-  }
-  a.card-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-  }
-  .row {
+  li.article.done { opacity: 0.55; background: #f5f2ed; }
+  li.article.done .title { text-decoration: line-through; color: var(--done); }
+  label {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    gap: 12px;
+    align-items: flex-start;
+    cursor: pointer;
   }
-  .left { flex: 1; min-width: 0; }
-  .title {
-    font-weight: 600;
-    font-size: 16px;
-    color: var(--ink);
-    margin-bottom: 4px;
-  }
-  .handle { color: var(--accent); font-weight: 500; }
-  .desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.45;
-  }
-  .progress-pill {
-    background: #f0ece4;
-    color: var(--accent);
-    font-size: 13px;
-    font-weight: 500;
-    padding: 6px 12px;
-    border-radius: 999px;
-    white-space: nowrap;
+  input[type="checkbox"] {
+    margin-top: 5px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+    cursor: pointer;
     flex-shrink: 0;
   }
-  .progress-pill.complete {
-    background: var(--accent);
-    color: white;
+  .content { flex: 1; min-width: 0; }
+  .title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
   }
+  .title {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .author {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .gist {
+    font-size: 13px;
+    color: var(--ink);
+    font-style: italic;
+    margin-bottom: 8px;
+    line-height: 1.45;
+  }
+  .takeaway {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 10px;
+  }
+  .takeaway strong { color: var(--ink); }
+  .meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-size: 12px;
+    flex-wrap: wrap;
+  }
+  .date { color: var(--muted); }
+  .links a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .links a:hover { text-decoration: underline; }
   footer {
     margin-top: 40px;
     padding-top: 20px;
@@ -85,71 +142,295 @@
     color: var(--muted);
     text-align: center;
   }
+  footer button {
+    background: none;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  footer button:hover { border-color: var(--accent); color: var(--accent); }
 </style>
 </head>
 <body>
+
 <header>
-  <h1>Reading Lists</h1>
-  <div class="sub">Curated checklists. Click to open, tick off as you read.</div>
+  <h1>Reading List — Building with Agents</h1>
+  <div class="sub">Articles to read</div>
+  <div class="progress" id="progress">0 of 0 read</div>
 </header>
 
+<div class="tier-header tier-1">
+  <h2><span class="tier-badge">Tier 1</span>Foundations</h2>
+  <div class="tier-desc">Read these first. Mental models for what LLMs are, what they're good for, and why a PM can suddenly build things. ~5-7 articles, maybe 90 min total.</div>
+</div>
+
 <ul>
-  <li>
-    <a class="card-link" href="karpathy-blog.html">
-      <div class="row">
-        <div class="left">
-          <div class="title">Andrej Karpathy <span class="handle">— curated for building with agents</span></div>
-          <div class="desc">7 posts trimmed from his Bear blog. Software 3.0, agentic engineering, vibe coding MenuGen, the LLM Wiki pattern.</div>
-        </div>
-        <div class="progress-pill" data-key="karpathy-blog-v3" data-total="7">— / 7</div>
-      </div>
-    </a>
-  </li>
+  <li class="article" data-id="t1-power"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">Power to the people</span>
+      <span class="author">Karpathy</span>
+    </div>
+    <div class="gist">Why LLMs are the first technology that benefits regular people more than corporations.</div>
+    <div class="takeaway">Every prior tech wave (electricity, computers, internet) reached governments and big companies first, then trickled down over decades. LLMs are inverted — a solo person can build production-grade software, get expert-level legal/medical/coding advice, and run real automations today, while large enterprises are still stuck in procurement cycles. <strong>The practical implication for you:</strong> the gap between "PM with ideas" and "PM who ships software" has collapsed. Your bottleneck is no longer technical skill — it's deciding what to build and learning to verify what agents produce.</div>
+    <div class="meta"><span class="date">Apr 2025</span><span class="links"><a href="https://karpathy.bearblog.dev/power-to-the-people/" target="_blank">Read →</a></span></div>
+  </div></label></li>
 
-  <li>
-    <a class="card-link" href="trq212-articles.html">
-      <div class="row">
-        <div class="left">
-          <div class="title">Thariq <span class="handle">@trq212</span></div>
-          <div class="desc">7 X Articles from the Claude Code team. Prompt caching, skills, session management, "HTML is the new markdown".</div>
-        </div>
-        <div class="progress-pill" data-key="trq212-articles-v1" data-total="7">— / 7</div>
-      </div>
-    </a>
-  </li>
+  <li class="article" data-id="t1-animals"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">Animals vs Ghosts</span>
+      <span class="author">Karpathy</span>
+    </div>
+    <div class="gist">LLMs aren't artificial animals — they're "ghosts summoned from human text." Different category entirely.</div>
+    <div class="takeaway">Animals (including humans) are shaped by billions of years of evolutionary pressure: survival, reproduction, embodied experience. LLMs are shaped by predicting next tokens across the human text corpus. They have no body, no continuity, no stakes. <strong>The practical implication:</strong> stop being surprised when an LLM is brilliant about quantum physics and then confidently wrong about counting letters. They're not "almost-people who occasionally fail" — they're a genuinely new kind of entity with sharp peaks of capability and sharp valleys of failure. Build with that shape in mind: lean on their strengths (synthesis, code, language), verify their weaknesses (facts, math, anything requiring grounded judgment).</div>
+    <div class="meta"><span class="date">Oct 2025</span><span class="links"><a href="https://karpathy.bearblog.dev/animals-vs-ghosts/" target="_blank">Read →</a></span></div>
+  </div></label></li>
 
-  <li>
-    <a class="card-link" href="garrytan-articles.html">
-      <div class="row">
-        <div class="left">
-          <div class="title">Garry Tan <span class="handle">@garrytan</span></div>
-          <div class="desc">5 X Articles. GStack, Fat Skills, the LOC controversy, Skillify, the GBrain thesis.</div>
-        </div>
-        <div class="progress-pill" data-key="garrytan-articles-v1" data-total="5">— / 5</div>
-      </div>
-    </a>
-  </li>
+  <li class="article" data-id="t1-verifiability"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">Verifiability</span>
+      <span class="author">Karpathy</span>
+    </div>
+    <div class="gist">A practical heuristic for what tasks agents are actually good at: anything you can easily verify.</div>
+    <div class="takeaway">Software 1.0 automated tasks you could fully specify (sorting, calculating). Software 2.0 (LLMs/agents) automates tasks you can verify — even if you couldn't have specified them. Writing code is high-verifiability (it either runs or it doesn't). Generating an image to spec is high-verifiability (you look at it). Writing a strategy memo is medium (subjective). Investing your savings is low (you only find out years later). <strong>The practical implication:</strong> when scoping your side projects, prefer tasks with tight, fast verification loops. "Build me a Tabelog scraper" is great — you see if it works in seconds. "Build me an AI investment advisor" is bad — verification takes years and the stakes are high. Use this as your filter.</div>
+    <div class="meta"><span class="date">Nov 2025</span><span class="links"><a href="https://karpathy.bearblog.dev/verifiability/" target="_blank">Read →</a></span></div>
+  </div></label></li>
+
+  <li class="article" data-id="t1-vibe"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">Vibe coding MenuGen</span>
+      <span class="author">Karpathy</span>
+    </div>
+    <div class="gist">The single most useful post for your situation. The playbook AND the warning for building real apps with agents.</div>
+    <div class="takeaway">Karpathy vibe-codes a real app (translates restaurant menus into images), and the post is brutally honest about both sides. <strong>The good:</strong> the actual coding is fast, fun, and far easier than expected — a non-expert can ship a working web app in a weekend. <strong>The hard:</strong> everything around the code (deployment, auth, payments, DNS, image generation costs, abuse) is still IKEA-furniture-assembly tedious, and agents don't help much there yet. He also hit a subtle email bug where an agent confidently wrote plausible-but-wrong code — the canonical example of why you must read what agents produce. <strong>The practical implication:</strong> expect the same shape on your first real project. The code part will surprise you with how easy it is. Don't be discouraged when the deployment, auth, and edge-case-handling parts take longer than the code itself — that's normal and not a sign you're doing it wrong.</div>
+    <div class="meta"><span class="date">Apr 2025</span><span class="links"><a href="https://karpathy.bearblog.dev/vibe-coding-menugen/" target="_blank">Read →</a></span></div>
+  </div></label></li>
+
+  <li class="article" data-id="t1-yir"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">2025 LLM Year in Review</span>
+      <span class="author">Karpathy</span>
+    </div>
+    <div class="gist">One-post catch-up on the entire AI field as of late 2025. Read this and you understand 80% of 2026 AI discourse.</div>
+    <div class="takeaway">Covers the key 2025 shifts: RLVR (reinforcement learning with verifiable rewards — the breakthrough that powered reasoning models), jagged intelligence (the spiky capability profile from Animals vs Ghosts in practical terms), Cursor as the dominant IDE-layer, Claude Code as the agent-paradigm winner, vibe coding entering the mainstream, and nano-banana / image generation getting commoditized. <strong>The practical implication:</strong> this is your shared vocabulary with the rest of the field. When colleagues or articles reference "RLVR" or "jagged frontier" or "agentic workflows," you'll know what they mean instead of bluffing. It also frames why Claude Code (which you're already using at work) is the right tool to be investing in.</div>
+    <div class="meta"><span class="date">Dec 2025</span><span class="links"><a href="https://karpathy.bearblog.dev/year-in-review-2025/" target="_blank">Read →</a></span></div>
+  </div></label></li>
+
+  <li class="article" data-id="t1-sequoia"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">Sequoia Ascent 2026 summary</span>
+      <span class="author">Karpathy</span>
+    </div>
+    <div class="gist">The capstone. Software 3.0, agentic engineering vs vibe coding, and the LLM Wiki pattern that's exactly your Monday TODO.</div>
+    <div class="takeaway">Vibe coding "raises the floor" — anyone can now build something. Agentic engineering "raises the ceiling" — the professional discipline of working productively with fallible agents (specs, verification, iteration, version control, the whole rig). They're the same activity at different rigor levels, and you're going to walk from one to the other. He also explicitly walks through the LLM Wiki pattern: a compiled knowledge base that LLMs consume to give better-grounded answers. <strong>The practical implication:</strong> this is the conceptual map of where you're heading. The "Monday TODO" wiki project you've been planning at work isn't a side curiosity — it's a structural piece of the agentic-engineering stack. Save this article for last in Tier 1; it lands much harder once the others are in.</div>
+    <div class="meta"><span class="date">Apr 2026</span><span class="links"><a href="https://karpathy.bearblog.dev/sequoia-ascent-2026/" target="_blank">Read →</a></span></div>
+  </div></label></li>
+</ul>
+
+<div class="tier-header tier-2">
+  <h2><span class="tier-badge">Tier 2</span>Practical Patterns</h2>
+  <div class="tier-desc">Read as you build. Specific patterns for prompt design, skills, context management, and orchestrating real agent work. Treat these as reference, not curriculum.</div>
+</div>
+
+<ul>
+  <li class="article" data-id="t2-caching"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">Prompt Caching Is Everything</span>
+      <span class="author">Thariq</span>
+    </div>
+    <div class="gist">The single biggest performance lever for agent products is structuring prompts so they hit the cache.</div>
+    <div class="takeaway">When Claude (or any LLM) sees a prompt prefix it has seen recently, it can skip recomputing those tokens — 5-10x faster, ~90% cheaper. Most consumer agent apps don't structure prompts to exploit this, and they pay the price. Put stable content (system prompts, tool definitions, reference docs) first and variable content (the user's latest message) last. <strong>The practical implication:</strong> if you build any agent product that runs at scale, this is the difference between a $10K/month bill and a $100K/month bill. For your personal projects, less critical, but understanding the principle helps you debug "why is my agent so slow" issues. Worth knowing the concept exists.</div>
+    <div class="meta"><span class="date">Feb 2026</span><span class="links"><a href="https://x.com/i/article/2024543492064882688" target="_blank">Read →</a></span></div>
+  </div></label></li>
+
+  <li class="article" data-id="t2-seeing"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">Seeing like an Agent</span>
+      <span class="author">Thariq</span>
+    </div>
+    <div class="gist">Design context for the agent, not for yourself. The agent doesn't have your screen, your memory, or your judgment about what's important.</div>
+    <div class="takeaway">When agents fail, it's usually because they were missing context a human would have inferred — what file is open, what was just discussed, what tool just ran. The fix isn't smarter models, it's better context delivery: making the agent's "view" of the situation actually reflect the situation. <strong>The practical implication:</strong> when an agent is being dumb, before assuming the model is bad, ask "what would a smart person need to know that the agent doesn't?" Usually the answer is mechanical (a file path, a recent error, a tool's output format). Fix the context, the agent's competence comes back. This shift in mindset — from "blame the model" to "fix the context" — is one of the bigger productivity unlocks.</div>
+    <div class="meta"><span class="date">Feb 2026</span><span class="links"><a href="https://x.com/i/article/2027446899310313472" target="_blank">Read →</a></span></div>
+  </div></label></li>
+
+  <li class="article" data-id="t2-skills"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">How We Use Skills</span>
+      <span class="author">Thariq</span>
+    </div>
+    <div class="gist">Skills are a way to teach an agent a specific procedure once, then have it execute reliably forever.</div>
+    <div class="takeaway">A "skill" is a small folder (typically a SKILL.md + supporting files) describing how to do a particular task — like "create a PowerPoint" or "fill in a PDF form." The agent reads the skill, follows the procedure, produces consistent output. Skills externalize procedural knowledge that's painful to put in a system prompt. <strong>The practical implication:</strong> for any task you do repeatedly (rename files a certain way, format reports a certain way, query a specific database in a specific shape), write a skill. Then you ask the agent to do the task in plain English and the skill does the rest. This is the unit of "automate my workflow" you can actually build as a non-coder.</div>
+    <div class="meta"><span class="date">Mar 2026</span><span class="links"><a href="https://x.com/i/article/2033772621536591872" target="_blank">Read →</a></span></div>
+  </div></label></li>
+
+  <li class="article" data-id="t2-fatskills"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">Fat Skills, Fat Code, Thin Harness</span>
+      <span class="author">Garry Tan</span>
+    </div>
+    <div class="gist">Put the intelligence in skills and code, not in the orchestration layer. Keep the agent's outer loop simple.</div>
+    <div class="takeaway">A common mistake when building agent systems is making the orchestration layer (the "harness" that decides what the agent should do next) complex and clever. Garry's argument: do the opposite. Make the harness boring and predictable, and put the smarts in fat skills (rich, well-documented procedures) and fat code (well-tested utilities the agent can call). Why? Because skills and code are debuggable, version-controlled, and verifiable. Orchestration logic is none of those. <strong>The practical implication:</strong> when you build, resist the urge to build elaborate "agent frameworks." Use a simple agent loop, give it good tools and good skills, and let it figure things out. Echoes Karpathy's "fix the context" point from a different angle.</div>
+    <div class="meta"><span class="date">Apr 2026</span><span class="links"><a href="https://x.com/i/article/2042922188924424198" target="_blank">Read →</a></span></div>
+  </div></label></li>
+
+  <li class="article" data-id="t2-session"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">Session Management & 1M Context</span>
+      <span class="author">Thariq</span>
+    </div>
+    <div class="gist">How to structure long agent sessions so context doesn't rot or overflow.</div>
+    <div class="takeaway">Even with 1M-token context windows, agents perform worse as context fills up — old information dilutes recent intent, attention spreads thin, costs balloon. The pattern: break long work into discrete sessions, summarize and persist key state between sessions, start fresh context windows when topic shifts. Don't treat the context window as infinite even when it nominally is. <strong>The practical implication:</strong> for your work with Claude Code at Amber, this is why you sometimes get worse output in long conversations and why starting fresh sometimes helps. When debugging is dragging, restart the session with a clean summary of where you are. It's not the model getting tired, it's the context getting noisy.</div>
+    <div class="meta"><span class="date">Apr 2026</span><span class="links"><a href="https://x.com/i/article/2044537014620721153" target="_blank">Read →</a></span></div>
+  </div></label></li>
+
+  <li class="article" data-id="t2-skillify"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">Skillify</span>
+      <span class="author">Garry Tan</span>
+    </div>
+    <div class="gist">Auto-create skills from your actual workflow. Stop writing skills by hand.</div>
+    <div class="takeaway">Manually writing skills is tedious and you forget to document things. Better: have the agent watch you do the task once, then generate a SKILL.md describing what you did. Iterate by running the skill and refining when it fails. Your workflow becomes documented as a side effect of doing the work. <strong>The practical implication:</strong> this is the meta-pattern for your knowledge management ambitions. Every time you do something twice at work, instead of writing the skill from scratch, have Claude observe the second time and draft the skill. Lowers the activation energy for "should I make this a skill?" from high to zero.</div>
+    <div class="meta"><span class="date">Apr 2026</span><span class="links"><a href="https://x.com/i/article/2046866228703363072" target="_blank">Read →</a></span></div>
+  </div></label></li>
+
+  <li class="article" data-id="t2-html"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">HTML is the New Markdown</span>
+      <span class="author">Thariq</span>
+    </div>
+    <div class="gist">For rich agent output, HTML beats Markdown — agents can express structure, interactivity, and visual layout natively.</div>
+    <div class="takeaway">Markdown was the default agent output format because it's lightweight and ubiquitous, but it can't express tables well, can't do interactivity, can't lay things out spatially. HTML can. As agents get better at writing HTML, more outputs should be HTML — reports, dashboards, interactive widgets, reading lists like this one. The trade-off: HTML is heavier to produce and view, but the output is more useful. <strong>The practical implication:</strong> the page you're reading right now is the proof. We could have built this as Markdown — checkboxes don't work, layout is rigid, no live progress. Instead we built it as HTML, hosted it, and you have a real tool. Generalize this: when an agent gives you Markdown for something that should be richer, ask for HTML instead. You'll get a better artifact.</div>
+    <div class="meta"><span class="date">May 2026</span><span class="links"><a href="https://x.com/i/article/2052796100608974848" target="_blank">Read →</a></span></div>
+  </div></label></li>
+
+  <li class="article" data-id="t2-gbrain"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">Compounding AI Systems — The GBrain Thesis</span>
+      <span class="author">Garry Tan</span>
+    </div>
+    <div class="gist">A production-grade version of the Karpathy LLM Wiki pattern — Postgres-backed, embedding-indexed, self-updating.</div>
+    <div class="takeaway">Karpathy's LLM Wiki was the simple gist version. Garry's GBrain is what it looks like at company scale: a knowledge base that ingests company docs, conversations, code, and decisions, embeds them, and exposes them as a queryable retrieval layer for every agent in the org. The system gets smarter as more information flows through it — hence "compounding." <strong>The practical implication:</strong> for your Monday TODO, this is the more ambitious version of what you could eventually build at Amber. Start with the Karpathy gist pattern (just markdown files in a repo) and graduate to a GBrain-style system if it earns its complexity. Don't start with GBrain — you'll overbuild.</div>
+    <div class="meta"><span class="date">May 2026</span><span class="links"><a href="https://x.com/i/article/2052898104039657472" target="_blank">Read →</a></span></div>
+  </div></label></li>
+</ul>
+
+<div class="tier-header tier-3">
+  <h2><span class="tier-badge">Tier 3</span>Optional / Niche</h2>
+  <div class="tier-desc">Skip unless the topic catches you. Either too author-specific, too tangential to building agents, or interesting trivia rather than actionable.</div>
+</div>
+
+<ul>
+  <li class="article" data-id="t3-merge"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">Merging Slash Commands into Skills</span>
+      <span class="author">Thariq</span>
+    </div>
+    <div class="gist">Implementation history of why Claude Code consolidated /commands and skills. Inside-baseball.</div>
+    <div class="takeaway">A behind-the-scenes look at how the Claude Code team decided skills and slash commands were the same primitive and merged them. Useful if you're designing your own agent system and wondering how to unify "user shortcuts" with "agent procedures." Otherwise skippable — interesting product-history but not actionable for you. <strong>Verdict:</strong> skip unless you're explicitly designing an agent product.</div>
+    <div class="meta"><span class="date">Jan 2026</span><span class="links"><a href="https://x.com/trq212/status/2014836841846132761" target="_blank">Read →</a></span></div>
+  </div></label></li>
+
+  <li class="article" data-id="t3-playgrounds"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">Claude Code Playgrounds</span>
+      <span class="author">Thariq</span>
+    </div>
+    <div class="gist">Interactive HTML pages embedded in Claude Code's planning step. Cute feature, niche application.</div>
+    <div class="takeaway">Claude Code can generate interactive HTML "playgrounds" mid-conversation to let you tweak parameters before it commits to a plan. Useful pattern if you're heavily using Claude Code for planning-intensive work, less useful if you're mostly executing. <strong>Verdict:</strong> read if you find yourself wishing you could "play with the plan" before Claude commits to it. Otherwise skip.</div>
+    <div class="meta"><span class="date">Jan 2026</span><span class="links"><a href="https://x.com/i/article/2016768930174685187" target="_blank">Read →</a></span></div>
+  </div></label></li>
+
+  <li class="article" data-id="t3-loc"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">On the LOC Controversy</span>
+      <span class="author">Garry Tan</span>
+    </div>
+    <div class="gist">Garry defending his "10x productivity" claims after pushback. Twitter drama with weak signal.</div>
+    <div class="takeaway">Garry posted productivity stats about YC companies using AI and got criticized for cherry-picking. The article is mostly defensive rather than illuminating. The underlying point — that AI-augmented startups are shipping faster — is real, but the article doesn't add much beyond what's in his other posts. <strong>Verdict:</strong> skip. Read Power to the People and Sequoia Ascent instead for the same idea, better framed.</div>
+    <div class="meta"><span class="date">Apr 2026</span><span class="links"><a href="https://x.com/i/article/2045399081150025728" target="_blank">Read →</a></span></div>
+  </div></label></li>
+
+  <li class="article" data-id="t3-append"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">The append-and-review note</span>
+      <span class="author">Karpathy</span>
+    </div>
+    <div class="gist">Karpathy's personal note-taking system: one Apple note for everything, append on top, review periodically.</div>
+    <div class="takeaway">Charmingly minimal personal productivity post. Not really about AI or building — just one smart person sharing how he keeps notes. Possible relevance to your Notion query library habits, but Karpathy's system is more constrained (one file, one app) where yours is more structured. <strong>Verdict:</strong> read for personal interest, no direct building-applicable insight.</div>
+    <div class="meta"><span class="date">Mar 2025</span><span class="links"><a href="https://karpathy.bearblog.dev/the-append-and-review-note/" target="_blank">Read →</a></span></div>
+  </div></label></li>
+
+  <li class="article" data-id="t3-gstack"><label><input type="checkbox"><div class="content">
+    <div class="title-row">
+      <span class="title">GStack / Skills Design Philosophy</span>
+      <span class="author">Garry Tan</span>
+    </div>
+    <div class="gist">Garry's earliest framing of the skills concept. Largely superseded by "Fat Skills, Fat Code, Thin Harness" which is in Tier 2.</div>
+    <div class="takeaway">First articulation of his agent-design philosophy. Worth reading historically, but the Tier 2 article "Fat Skills, Fat Code, Thin Harness" says the same things more clearly and with hindsight. <strong>Verdict:</strong> skip unless you want the developmental arc.</div>
+    <div class="meta"><span class="date">Jan 2026</span><span class="links"><a href="https://x.com/i/article/2017109679416233987" target="_blank">Read →</a></span></div>
+  </div></label></li>
 </ul>
 
 <footer>
-  Built and pushed from Claude. Hosted on GitHub Pages.
+  <button onclick="resetAll()">Reset progress</button>
+  <div style="margin-top:10px;">Future articles get auto-inserted into the right tier when added.</div>
 </footer>
 
 <script>
-  // Read progress from each list's localStorage
-  document.querySelectorAll('.progress-pill').forEach(pill => {
-    const key = pill.dataset.key;
-    const total = parseInt(pill.dataset.total, 10);
-    let done = 0;
-    try {
-      const state = JSON.parse(localStorage.getItem(key) || '{}');
-      done = Object.values(state).filter(v => v === true).length;
-    } catch(e) {}
-    pill.textContent = `${done} / ${total}`;
-    if (done === total && total > 0) {
-      pill.classList.add('complete');
+  const KEY = 'reading-list-v1';
+  const articles = document.querySelectorAll('li.article');
+  const progress = document.getElementById('progress');
+
+  function save() {
+    const state = {};
+    articles.forEach(li => {
+      state[li.dataset.id] = li.querySelector('input').checked;
+    });
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  function load() {
+    let state = {};
+    try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) {}
+    articles.forEach(li => {
+      const cb = li.querySelector('input');
+      cb.checked = !!state[li.dataset.id];
+      li.classList.toggle('done', cb.checked);
+    });
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const total = articles.length;
+    const done = document.querySelectorAll('li.article input:checked').length;
+    progress.innerHTML = `<strong>${done}</strong> of ${total} read`;
+  }
+
+  function resetAll() {
+    articles.forEach(li => {
+      const cb = li.querySelector('input');
+      cb.checked = false;
+      li.classList.remove('done');
+    });
+    save();
+    updateProgress();
+  }
+
+  document.body.addEventListener('change', e => {
+    if (e.target.matches('input[type="checkbox"]')) {
+      const li = e.target.closest('li.article');
+      if (li) {
+        li.classList.toggle('done', e.target.checked);
+        save();
+        updateProgress();
+      }
     }
   });
+
+  load();
 </script>
+
 </body>
 </html>
